@@ -1,0 +1,68 @@
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --color-brand: #11634c;
+  --color-brand-dark: #0b4535;
+  --color-gold: #d3ac61;
+  --font-sans: var(--font-inter), system-ui, sans-serif;
+}
+
+/* Chart colors. The status (seg) set is checked for color-blind separation; keep its order when changing values. */
+:root {
+  --chart-1: #11634c;
+  --chart-surface: #ffffff;
+  --chart-ink: #1e293b;
+  --chart-axis: #64748b;
+  --chart-grid: #e2e8f0;
+  --chart-cursor: rgba(100, 116, 139, 0.1);
+  --seg-green: #1baf7a;
+  --seg-green-ink: #0b0b0b;
+  --seg-amber: #eda100;
+  --seg-amber-ink: #0b0b0b;
+  --seg-blue: #2a78d6;
+  --seg-red: #d03b3b;
+  --seg-gray: #64748b;
+}
+.dark {
+  --chart-1: #d3ac61;
+  --chart-surface: #0f172a;
+  --chart-ink: #e2e8f0;
+  --chart-axis: #94a3b8;
+  --chart-grid: #1e293b;
+  --chart-cursor: rgba(148, 163, 184, 0.12);
+  --seg-amber: #c98500;
+  --seg-blue: #3987e5;
+  --seg-red: #e66767;
+  --seg-red-ink: #0b0b0b;
+}
+
+html { color-scheme: light; }
+html.dark { color-scheme: dark; }
+body { @apply bg-slate-100 text-slate-800 antialiased dark:bg-slate-950 dark:text-slate-100; }
+
+/* In the components layer so utilities such as p-0 can override them. */
+@layer components {
+  .inp { @apply w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm outline-none transition focus:border-brand focus:ring-2 focus:ring-brand/30 dark:border-slate-700 dark:bg-slate-900; }
+  .btn-primary, .btn-ghost, .btn-danger { @apply inline-flex items-center justify-center gap-1.5 rounded-lg px-3.5 py-2 text-sm font-medium transition disabled:cursor-not-allowed disabled:opacity-50; }
+  .btn-primary { @apply bg-brand text-white hover:bg-brand-dark; }
+  .btn-ghost { @apply border border-slate-300 bg-white hover:bg-slate-100 dark:border-slate-700 dark:bg-slate-900 dark:hover:bg-slate-800; }
+  .btn-danger { @apply bg-red-600 text-white hover:bg-red-700; }
+  .card { @apply rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-800 dark:bg-slate-900; }
+  .tbl-head { @apply bg-brand-dark text-white; }
+  .act { @apply inline-flex items-center gap-1 whitespace-nowrap rounded-full px-2.5 py-1 text-xs font-medium transition; }
+  .act-view { @apply bg-sky-100 text-sky-800 hover:bg-sky-200 dark:bg-sky-900/40 dark:text-sky-200 dark:hover:bg-sky-900/70; }
+  .act-edit { @apply bg-brand text-white hover:bg-brand-dark; }
+  .act-extra { @apply bg-amber-100 text-amber-900 hover:bg-amber-200 dark:bg-amber-900/40 dark:text-amber-200 dark:hover:bg-amber-900/70; }
+  .act-danger { @apply bg-red-600 text-white hover:bg-red-700; }
+  .rte-btn { @apply grid size-7 place-items-center rounded text-slate-700 transition hover:bg-slate-200 disabled:opacity-40 dark:text-slate-200 dark:hover:bg-slate-700; }
+
+  .rte h2 { @apply my-2 text-xl font-bold; }
+  .rte h3 { @apply my-2 text-lg font-semibold; }
+  .rte h4 { @apply my-2 font-semibold; }
+  .rte p { @apply my-1.5; }
+  .rte ul { @apply my-1.5 list-disc pl-5; }
+  .rte ol { @apply my-1.5 list-decimal pl-5; }
+  .rte blockquote { @apply my-2 border-l-4 border-gold pl-3 text-slate-600 italic dark:text-slate-300; }
+  .rte a { @apply text-brand underline dark:text-gold; }
+}
